@@ -11,6 +11,8 @@
 @interface ReadMeLabel () {
     ReadMe *_readMe;
     UIColor *_mainColor;
+    int _orp;
+    float _orpLocationInView;
 }
 
 @end
@@ -53,6 +55,8 @@
     
     _orpColor = [UIColor redColor]; // Default color to red
     _mainColor = self.textColor;
+    
+    _orpLocationInView = 0.5f;
 }
 
 #pragma mark - Actions
@@ -81,7 +85,7 @@
     NSRange endRange = NSMakeRange(orp+1, newWord.length-(orp+1));
     [string addAttribute:NSForegroundColorAttributeName value:self.textColor range:endRange];
     
-    // TODO : center label on ORP point.
+    _orp = orp;
     
     self.attributedText = string;
 }
@@ -96,6 +100,25 @@
 {
     [super setTextColor:textColor];
     _mainColor = textColor;
+}
+
+- (void)drawTextInRect:(CGRect)rect
+{
+    if (self.attributedText.length > 0)
+    {
+        // Inset text from left to have the orp centered.
+        NSAttributedString *leftSubstring = [self.attributedText attributedSubstringFromRange:NSMakeRange(0, _orp)];
+        NSLog(@"%@",leftSubstring);
+        CGSize leftSubstringSize = [leftSubstring size];
+        float xCenter = self.bounds.size.width * _orpLocationInView;
+        float offset = xCenter - leftSubstringSize.width;
+        
+        [super drawTextInRect:CGRectOffset(rect, offset, 0.f)];
+    }
+    else
+    {
+        [super drawTextInRect:rect];
+    }
 }
 
 @end
