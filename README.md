@@ -3,6 +3,8 @@ ReadMe
 
 A Spritz like library for iOS. (WIP)
 
+![Sample](http://s30.postimg.org/ugsc0l93l/readme.gif)
+
 ### Simple usage
 To use it, simply drag and drop the two classes in your Xcode project.
 Then, to launch the reading process with the ReadMeLabel just call `readText:` on the label instance. The default reading speed is 300 words per minute. To stop the reading process, simply call `stopReading`. There is no need to call the stop method, the process will stop when it reaches the end of the text.
@@ -22,9 +24,9 @@ You can create your custom control by implementing the delegate methods. Feel fr
 You can implements these delegate methods to handle your own ReadMe control if you do not want to use ReadMeLabel.
 
 #### Tasks
-`– readMe:didReadWord:withORP:` required method
+[`– readMe:didReadWord:withORP:`](https://github.com/notbenoit/ReadMe/edit/master/README.md#readmedidreadwordwithorp) required method 
 
-`– readMeDidFinishReading:` required method
+[`– readMeDidFinishReading:`](https://github.com/notbenoit/ReadMe/edit/master/README.md#readmedidfinishreading) required method
 
 ===
 
